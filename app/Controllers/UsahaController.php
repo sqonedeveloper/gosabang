@@ -5,7 +5,9 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Controllers\BaseController;
 
-class AdminController extends BaseController {
+class UsahaController extends BaseController {
+
+   protected $id_profile_usaha;
 
    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger) {
       parent::initController($request, $response, $logger);
@@ -16,10 +18,12 @@ class AdminController extends BaseController {
    private function _checkLogin() {
       $session = \Config\Services::session();
 
+      $this->id_profile_usaha = $session->get('id_profile_usaha');
+
       $is_login = $session->get('isLogin');
       $role = $session->get('role');
 
-      if (!$is_login || $role !== '1') {
+      if (!$is_login || $role !== '2') {
          $msg = 'Do you have to <a href="'.site_url('login').'">log in</a> first?';
          die($msg);
       }
@@ -70,42 +74,28 @@ class AdminController extends BaseController {
             'label' => 'Dashboard',
             'icon' => 'mdi mdi-gauge',
             'active' => ['dashboard'],
-            'url' => '/admin/dashboard',
-            'sub' => false
-         ],
-         [
-            'label' => 'Categories',
-            'icon' => 'mdi mdi-gauge',
-            'active' => ['categories'],
-            'url' => '/admin/categories',
+            'url' => '/usaha/dashboard',
             'sub' => false
          ],
          [
             'label' => 'Profile',
             'icon' => 'mdi mdi-gauge',
             'active' => ['profile'],
-            'url' => '/admin/profile',
-            'sub' => false
-         ],
-         [
-            'label' => 'Users',
-            'icon' => 'mdi mdi-gauge',
-            'active' => ['users'],
             'url' => '#',
             'sub' => true,
             'child' => [
                [
-                  'label' => 'Account',
-                  'active' => ['account'],
-                  'url' => '/admin/users/account'
+                  'label' => 'Item',
+                  'active' => ['item'],
+                  'url' => '/usaha/profile/item'
                ]
             ]
          ],
          [
-            'label' => 'Settings',
+            'label' => 'Account',
             'icon' => 'mdi mdi-gauge',
-            'active' => ['settings'],
-            'url' => '/admin/settings',
+            'active' => ['account'],
+            'url' => '/usaha/account',
             'sub' => false
          ],
       ];

@@ -50,9 +50,11 @@ class BaseController extends Controller {
    }
 
    public function getUsersLogin() {
+      $session = \Config\Services::session();
+
       $response = [
-         'nama' => 'Administrator',
-         'email' => 'sqone.developer@ar-raniry.ac.id'
+         'nama' => $session->get('name'),
+         'email' => $session->get('email')
       ];
       return $response;
    }

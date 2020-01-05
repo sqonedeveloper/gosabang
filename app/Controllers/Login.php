@@ -4,6 +4,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Controllers\BaseController;
+use App\Validation\Login as Validate;
 
 class Login extends BaseController {
 
@@ -39,8 +40,11 @@ class Login extends BaseController {
             if ($checkUsers) {
                $session = \Config\Services::session();
                $session->set('isLogin', true);
+               $session->set('name', $checkUsers['name']);
                $session->set('username', $checkUsers['username']);
-               $session->set('telp', $checkUsers['telp']);
+               $session->set('email', $checkUsers['email']);
+               $session->set('role', $checkUsers['role']);
+               $session->set('id_profile_usaha', $checkUsers['id_profile_usaha']);
 
                $response['status'] = true;
                $response['msg_response'] = 'Anda berhasil login, halaman segera dialihkan.';
@@ -59,9 +63,10 @@ class Login extends BaseController {
    }
 
    private function _resolve_user_login($username, $password) {
-      $table = $this->db->table('tb_users');
-      $table->select('*');
-      $table->where('username', $username);
+      $table = $this->db->table('tb_users a');
+      $table->select('a.name, a.username, a.email, a.role, b.id as id_profile_usaha, a.password');
+      $table->join('tb_profile_usaha b', 'b.id_users = a.id', 'left');
+      $table->where('a.username', $username);
 
       $get = $table->get();
       $data = $get->getRowArray();

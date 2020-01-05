@@ -58,7 +58,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * only routes that have been defined here will be available.
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Login');
+$routes->setDefaultController('App\Controllers\Production\Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -72,7 +72,9 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Login::index');
+$routes->get('/', 'App\Controllers\Production\Home::index');
+
+
 $routes->get('login', 'Login::index');
 $routes->group('login', function($routes) {
 	$routes->get('logout', 'Login::logout');
@@ -106,6 +108,25 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function($rout
 			$routes->post('getData', 'Account::getData');
 			$routes->post('delete', 'Account::delete');
 		});
+	});
+});
+
+$routes->group('usaha', ['namespace' => 'App\Controllers\Usaha'], function($routes) {
+	$routes->get('dashboard', 'Dashboard::index');
+
+	$routes->group('profile', ['namespace' => 'App\Controllers\Usaha\Profile'], function($routes) {
+		$routes->get('item', 'Item::index');
+		$routes->group('item', function($routes) {
+			$routes->get('edit/(:num)', 'Item::edit/$1');
+			$routes->post('submit', 'Item::submit');
+			$routes->post('getData', 'Item::getData');
+			$routes->post('delete', 'Item::delete');
+		});
+	});
+
+	$routes->get('account', 'Account::index');
+	$routes->group('account', function($routes) {
+		$routes->post('submit', 'Account::submit');
 	});
 });
 

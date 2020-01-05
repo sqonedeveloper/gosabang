@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import MsgResponse from './MsgResponse'
 import axios from 'axios'
+import { userRoles } from './Helper'
 
 axios.defaults.baseURL = siteURL
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
@@ -36,6 +37,8 @@ class Login extends Component {
          then(res => {
             var response = res.data
             this.setState({ ...response })
+
+            open(siteURL + '/' +  userRoles(response.role) + '/dashboard', '_parent')
          }).
          catch(error => {
             console.log('Error', error.message)
