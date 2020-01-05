@@ -31,7 +31,7 @@ class Categories extends Model {
       } else if ($post['pageType'] === 'update') {
          unset($post['pageType']);
 
-         if (empty($post['icon'])) {
+         if ($post['icon'] === 'undefined') {
             unset($post['icon']);
          }
 

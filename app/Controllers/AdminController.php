@@ -67,85 +67,25 @@ class AdminController extends BaseController {
             'sub' => false
          ],
          [
-            'label' => 'Produk',
+            'label' => 'Profile',
             'icon' => 'mdi mdi-gauge',
-            'active' => ['produk'],
-            'url' => '#',
-            'sub' => true,
-            'child' => [
-               [
-                  'label' => 'Kategori',
-                  'active' => ['kategori'],
-                  'url' => '/admin/produk/kategori'
-               ],
-               [
-                  'label' => 'Satuan',
-                  'active' => ['satuan'],
-                  'url' => '/admin/produk/satuan'
-               ],
-               [
-                  'label' => 'Data Produk',
-                  'active' => ['dataProduk'],
-                  'url' => '/admin/produk/dataProduk'
-               ]
-            ]
-         ],
-         [
-            'label' => 'Stok',
-            'icon' => 'mdi mdi-gauge',
-            'active' => ['stok'],
-            'url' => '#',
-            'sub' => true,
-            'child' => [
-               [
-                  'label' => 'Masuk',
-                  'active' => ['masuk'],
-                  'url' => '/admin/stok/masuk'
-               ],
-               [
-                  'label' => 'Keluar',
-                  'active' => ['keluar'],
-                  'url' => '/admin/stok/keluar'
-               ]
-            ]
-         ],
-         [
-            'label' => 'Transaksi',
-            'icon' => 'mdi mdi-gauge',
-            'active' => ['transaksi'],
-            'url' => '/admin/transaksi',
+            'active' => ['profile'],
+            'url' => '/admin/profile',
             'sub' => false
          ],
          [
-            'label' => 'Laporan',
+            'label' => 'Users',
             'icon' => 'mdi mdi-gauge',
-            'active' => ['laporan'],
+            'active' => ['users'],
             'url' => '#',
             'sub' => true,
             'child' => [
                [
-                  'label' => 'Penjualan',
-                  'active' => ['penjualan'],
-                  'url' => '/admin/laporan/penjualan'
-               ],
-               [
-                  'label' => 'Stok Masuk',
-                  'active' => ['stokMasuk'],
-                  'url' => '/admin/laporan/stokMasuk'
-               ],
-               [
-                  'label' => 'Stok Keluar',
-                  'active' => ['stokKeluar'],
-                  'url' => '/admin/laporan/stokKeluar'
+                  'label' => 'Account',
+                  'active' => ['account'],
+                  'url' => '/admin/users/account'
                ]
             ]
-         ],
-         [
-            'label' => 'Akun',
-            'icon' => 'mdi mdi-gauge',
-            'active' => ['akun'],
-            'url' => '/admin/akun',
-            'sub' => false
          ],
          [
             'label' => 'Settings',

@@ -10,6 +10,11 @@ module.exports = {
 		adminDashboard: './src/Admin/Dashboard.js',
 		adminCategories: './src/Admin/Categories/Lists.js',
 		adminCategoriesForms: './src/Admin/Categories/Forms.js',
+		adminProfile: './src/Admin/Profile/Lists.js',
+		adminProfileForms: './src/Admin/Profile/Forms.js',
+		login: './src/Login.js',
+		adminUsersAccount: './src/Admin/Users/Account/Lists.js',
+		adminUsersAccountForms: './src/Admin/Users/Account/Forms.js',
 	},
 
 	output: {

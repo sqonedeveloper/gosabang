@@ -2,22 +2,14 @@
 
 class Callback {
 
-   public function uploadIcon($str, &$error = null) : bool {
-      try {
-         $files = $_FILES;
-         $file_name = $files['icon']['name'];
-         
-         $target_dir = ROOTPATH . 'public/img/';
-         $target_file = $target_dir . basename($file_name);
-         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-         
+   public function checkNumeric(string $str, string &$error = null) : bool {
+      $str = (int) str_replace('.', '', $str);
 
-         
-         $error = $imageFileType;
+      if (!is_numeric($str)) {
+         $error = 'Can only be filled with numbers.';
          return false;
-      } catch (\CodeIgniter\UnknownFileException $e) {
-         throw new \RuntimeException($e->getMessage(), $e->getCode(), $e);
       }
+      return true;
    }
 
 }

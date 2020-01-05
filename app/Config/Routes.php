@@ -58,7 +58,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * only routes that have been defined here will be available.
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Login');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -72,7 +72,12 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Login::index');
+$routes->get('login', 'Login::index');
+$routes->group('login', function($routes) {
+	$routes->get('logout', 'Login::logout');
+	$routes->post('submit', 'Login::submit');
+});
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function($routes) {
 	$routes->get('dashboard', 'Dashboard::index');
@@ -84,7 +89,23 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function($rout
 		$routes->post('submit', 'Categories::submit');
 		$routes->post('getData', 'Categories::getData');
 		$routes->post('delete', 'Categories::delete');
-		$routes->post('uploadFile', 'Categories::uploadFile');
+	});
+	
+	$routes->get('profile', 'Profile::index');
+	$routes->group('profile', function($routes) {
+		$routes->get('addNew', 'Profile::addNew');
+		$routes->get('edit/(:num)', 'Profile::edit/$1');
+		$routes->post('submit', 'Profile::submit');
+		$routes->post('getData', 'Profile::getData');
+		$routes->post('delete', 'Profile::delete');
+	});
+
+	$routes->group('users', ['namespace' => 'App\Controllers\Admin\Users'], function($routes) {
+		$routes->get('account', 'Account::index');
+		$routes->group('account', function($routes) {
+			$routes->post('getData', 'Account::getData');
+			$routes->post('delete', 'Account::delete');
+		});
 	});
 });
 
