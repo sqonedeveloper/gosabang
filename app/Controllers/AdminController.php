@@ -60,10 +60,10 @@ class AdminController extends BaseController {
             'sub' => false
          ],
          [
-            'label' => 'Supplier',
+            'label' => 'Categories',
             'icon' => 'mdi mdi-gauge',
-            'active' => ['supplier'],
-            'url' => '/admin/supplier',
+            'active' => ['categories'],
+            'url' => '/admin/categories',
             'sub' => false
          ],
          [

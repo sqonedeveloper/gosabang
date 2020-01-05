@@ -7,7 +7,8 @@ class BaseController extends Controller {
 
 	protected $helpers = [
       'style',
-      'autoload'
+      'autoload',
+      'text'
    ];
 
 	public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger) {

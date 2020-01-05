@@ -76,6 +76,16 @@ $routes->get('/', 'Home::index');
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function($routes) {
 	$routes->get('dashboard', 'Dashboard::index');
+
+	$routes->get('categories', 'Categories::index');
+	$routes->group('categories', function($routes) {
+		$routes->get('addNew', 'Categories::addNew');
+		$routes->get('edit/(:num)', 'Categories::edit/$1');
+		$routes->post('submit', 'Categories::submit');
+		$routes->post('getData', 'Categories::getData');
+		$routes->post('delete', 'Categories::delete');
+		$routes->post('uploadFile', 'Categories::uploadFile');
+	});
 });
 
 /**

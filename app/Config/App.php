@@ -99,7 +99,7 @@ class App extends BaseConfig
 	| dates with the date helper, and can be retrieved through app_timezone()
 	|
 	*/
-	public $appTimezone = 'America/Chicago';
+	public $appTimezone = 'Asia/Jakarta';
 
 	/*
 	|--------------------------------------------------------------------------
@@ -265,5 +265,16 @@ class App extends BaseConfig
 	|   - http://www.w3.org/TR/CSP/
 	*/
 	public $CSPEnabled = false;
+
+	public $datatable = [
+		'css' => [
+			'plugins/datatables/dataTables.bootstrap4.min.css',
+			'plugins/datatables/responsive.dataTables.min.css'
+		],
+		'js' => [
+			'plugins/datatables/jquery.dataTables.min.js',
+			'plugins/datatables/dataTables.responsive.min.js'
+		]
+	];
 
 }

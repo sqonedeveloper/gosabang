@@ -13,7 +13,8 @@ class Dashboard extends AdminController {
 
    public function index() {
       $this->data = [
-         'title' => 'Dashboard'
+         'title' => 'Dashboard',
+         'internalJs' => ['http://localhost:8080/adminDashboard.js']
       ];
 
       $this->template($this->data);

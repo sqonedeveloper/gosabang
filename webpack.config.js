@@ -6,7 +6,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
 	entry: {
 		topbar: './src/Topbar.js',
-		sidebar: './src/Sidebar.js'
+		sidebar: './src/Sidebar.js',
+		adminDashboard: './src/Admin/Dashboard.js',
+		adminCategories: './src/Admin/Categories/Lists.js',
+		adminCategoriesForms: './src/Admin/Categories/Forms.js',
 	},
 
 	output: {
