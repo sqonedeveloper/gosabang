@@ -4,6 +4,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Controllers\AdminController;
+use App\Models\Admin\Dashboard as Model;
 
 class Dashboard extends AdminController {
 
@@ -12,9 +13,13 @@ class Dashboard extends AdminController {
    }
 
    public function index() {
+      $model = new Model();
+      $footerJs['counting'] = $model->getCountingData();
+
       $this->data = [
          'title' => 'Dashboard',
-         'internalJs' => ['http://localhost:8080/adminDashboard.js']
+         'internalJs' => ['bundle/adminDashboard.js'],
+         'footerJs' => $footerJs
       ];
 
       $this->template($this->data);

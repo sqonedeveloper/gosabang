@@ -38,7 +38,9 @@ class Login extends Component {
             var response = res.data
             this.setState({ ...response })
 
-            open(siteURL + '/' +  userRoles(response.role) + '/dashboard', '_parent')
+            if (response.status) {
+               open(siteURL + '/' +  userRoles(response.role) + '/dashboard', '_parent')
+            }
          }).
          catch(error => {
             console.log('Error', error.message)

@@ -15,6 +15,8 @@ class Item extends Model {
    }
 
    function deleteItems($post = []) {
+      @unlink(ROOTPATH . 'public/img/' . $post['image']);
+
       $table = $this->db->table('tb_items');
       $table->where('id', $post['id']);
       $table->where('id_profile_usaha', $this->id_profile_usaha);
@@ -79,6 +81,7 @@ class Item extends Model {
    
    private function _queryData() {
       $table = $this->db->table('tb_items');
+      $table->select('id, name, image, price');
       $table->where('id_profile_usaha', $this->id_profile_usaha);
       $table->select('id, name');
    

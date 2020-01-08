@@ -20,7 +20,7 @@ class Item extends UsahaController {
          'internalCss' => $this->app->datatable['css'],
          'internalJs' => [
             $this->app->datatable['js'],
-            'http://localhost:8080/usahaProfileItemForms.js'
+            'bundle/usahaProfileItemForms.js'
          ]
       ];
 
@@ -37,7 +37,7 @@ class Item extends UsahaController {
          'internalCss' => $this->app->datatable['css'],
          'internalJs' => [
             $this->app->datatable['js'],
-            'http://localhost:8080/usahaProfileItemForms.js'
+            'bundle/usahaProfileItemForms.js'
          ],
          'footerJs' => $footerJs
       ];
@@ -52,6 +52,16 @@ class Item extends UsahaController {
          $validate = new Validate();
       
          if ($this->validate($validate->generated($post))) {
+            $file = $this->request->getFile('image');
+            if (!empty($file)) {
+               $path = ROOTPATH . 'public/img/';
+               $newName = $file->getRandomName();
+               $file->move($path, $newName);
+               @chmod($path . $newName, 0777);
+
+               $post['image'] = $newName;
+            }
+
             $model = new Model();
             $model->submit($post);
 
@@ -80,12 +90,13 @@ class Item extends UsahaController {
    
             $action = '<div class="row-actions">';
             $action .= '<span class="edit"><a data-id="'.$data['id'].'">Edit</a></span>';
-            $action .= '<span class="delete"><a data-id="'.$data['id'].'" data-type="delete">Delete</a></span>';
+            $action .= '<span class="delete"><a data-id="'.$data['id'].'" data-image="'.$data['image'].'" data-type="delete">Delete</a></span>';
             $action .= '</div>';
    
             $result = [];
-            $result[] = $i;
+            $result[] = '<img src="' . base_url('img/' . $data['image']) . '" class="img-thumbnail" style="width: 50px; height: 50px;" />';
             $result[] = $data['name'] . '<br/>' . $action;
+            $result[] = number_format($data['price'], 0, '', '.');
    
             $response[] = $result;
          }

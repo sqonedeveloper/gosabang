@@ -28,6 +28,8 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
+    "react-render-html": "^0.6.0",
+    "trumbowyg": "^2.21.0",
     "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }

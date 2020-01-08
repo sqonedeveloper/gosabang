@@ -38,9 +38,9 @@ class UsahaController extends BaseController {
       }
 
       $internalJs = [
-         'http://localhost:8080/vendor.js',
-         'http://localhost:8080/topbar.js',
-         'http://localhost:8080/sidebar.js'
+         'bundle/vendor.js',
+         'bundle/topbar.js',
+         'bundle/sidebar.js'
       ];
       
       if (!empty($content['internalJs'])) {
@@ -79,11 +79,16 @@ class UsahaController extends BaseController {
          ],
          [
             'label' => 'Profile',
-            'icon' => 'mdi mdi-gauge',
+            'icon' => 'mdi mdi-account-box-outline',
             'active' => ['profile'],
             'url' => '#',
             'sub' => true,
             'child' => [
+               [
+                  'label' => 'Info',
+                  'active' => ['info'],
+                  'url' => '/usaha/profile/info'
+               ],
                [
                   'label' => 'Item',
                   'active' => ['item'],
@@ -92,8 +97,15 @@ class UsahaController extends BaseController {
             ]
          ],
          [
+            'label' => 'Gallery',
+            'icon' => 'mdi mdi-camera-front',
+            'active' => ['gallery'],
+            'url' => '/usaha/gallery',
+            'sub' => false
+         ],
+         [
             'label' => 'Account',
-            'icon' => 'mdi mdi-gauge',
+            'icon' => 'mdi mdi-account-network',
             'active' => ['account'],
             'url' => '/usaha/account',
             'sub' => false

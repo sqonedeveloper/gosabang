@@ -853,15 +853,14 @@ $( document ).ready(function() {
             minPosition: -266
         });
         $('.close-sidebar').click(function(){snapper.close(); return false;});
-        $('.open-left-sidebar').click(function() {
-            //$(this).toggleClass('remove-sidebar');
+        /* $('.open-left-sidebar').click(function() {
             if( snapper.state().state=="left" ){
                 snapper.close();
             } else {
                 snapper.open('left');
             }
             return false;
-        });	
+        });	 */
         $('.open-right-sidebar').click(function() {
             //$(this).toggleClass('remove-sidebar');
             if( snapper.state().state=="right" ){

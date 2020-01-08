@@ -4,7 +4,7 @@ class Login {
 
    public function generated($post = []) {
       return [
-         'username' => 'required|callbackCheckExistsUsername',
+         'username' => 'required|checkExistsUsername',
          'password' => 'required'
       ];
    }

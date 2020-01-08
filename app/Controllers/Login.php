@@ -20,8 +20,8 @@ class Login extends BaseController {
       $this->data = [
          'title' => 'Login',
          'internalJs' => script_tag([
-            'http://localhost:8080/vendor.js',
-            'http://localhost:8080/login.js',
+            'bundle/vendor.js',
+            'bundle/login.js',
          ])
       ];
 
@@ -36,15 +36,13 @@ class Login extends BaseController {
       
          if ($this->validate($validate->generated($post))) {
             $checkUsers = $this->_resolve_user_login($post['username'], $post['password']);
+            unset($checkUsers['password']);
 
+            $response['users'] = $checkUsers;
             if ($checkUsers) {
                $session = \Config\Services::session();
                $session->set('isLogin', true);
-               $session->set('name', $checkUsers['name']);
-               $session->set('username', $checkUsers['username']);
-               $session->set('email', $checkUsers['email']);
-               $session->set('role', $checkUsers['role']);
-               $session->set('id_profile_usaha', $checkUsers['id_profile_usaha']);
+               $session->set($checkUsers);
 
                $response['status'] = true;
                $response['msg_response'] = 'Anda berhasil login, halaman segera dialihkan.';
@@ -71,8 +69,9 @@ class Login extends BaseController {
       $get = $table->get();
       $data = $get->getRowArray();
 
+      
       if (isset($data)) {
-         $verify = $this->_verify_password_hash($password, $data['password']);
+         $verify = password_verify($password, $data['password']);
          
          if ($verify) {
             return $data;
@@ -91,7 +90,7 @@ class Login extends BaseController {
    public function logout() {
       $session = \Config\Services::session();
       $session->destroy();
-      return redirect()->to('/');
+      return redirect()->to(site_url('login'));
    }
 
 }

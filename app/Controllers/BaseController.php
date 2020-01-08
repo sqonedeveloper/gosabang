@@ -54,7 +54,8 @@ class BaseController extends Controller {
 
       $response = [
          'nama' => $session->get('name'),
-         'email' => $session->get('email')
+         'email' => $session->get('email'),
+         'role' => $session->get('role')
       ];
       return $response;
    }

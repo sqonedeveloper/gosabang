@@ -27,7 +27,7 @@ class Account extends UsahaController {
 
       $this->data = [
          'title' => 'Account',
-         'internalJs' => ['http://localhost:8080/usahaAccount.js'],
+         'internalJs' => ['bundle/usahaAccount.js'],
          'footerJs' => $footerJs
       ];
 

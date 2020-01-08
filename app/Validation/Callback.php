@@ -12,7 +12,7 @@ class Callback {
       return true;
    }
 
-   public function callbackCheckExistsUsername(string $str, string &$error = null) : bool {
+   public function checkExistsUsername(string $str, string &$error = null) : bool {
       $db = \Config\Database::connect();
       $table = $db->table('tb_users');
       $table->where('username', $str);

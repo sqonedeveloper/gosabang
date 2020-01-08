@@ -16,7 +16,8 @@ class Forms extends Component {
          errors: {},
          status: false,
          msg_response: '',
-         name: ''
+         name: '',
+         price: ''
       }
 
       this._onChange = this._onChange.bind(this)
@@ -47,12 +48,13 @@ class Forms extends Component {
 
             _delete.onclick = () => {
                if (confirm('Are you sure you want to delete?')) {
-                  this._delete(_delete.dataset.id)
+                  this._delete(_delete.dataset.id, _delete.dataset.image)
                }
             }
          },
          columns: [
             { class: 'text-center' },
+            null,
             null,
          ]
       });
@@ -60,9 +62,26 @@ class Forms extends Component {
 
    _onChange(e) {
       this.setState({ [e.target.name]: e.target.value })
+
+      if (e.target.name === 'image') {
+         var input = this.image.files[0]
+         var size = input.size / 1000
+
+         if (size >= 2000) {
+            this.setState({
+               errors: {
+                  image: 'File too large?'
+               }
+            })
+         } else {
+            this.setState({ errors: {
+               image: ''
+            } })
+         }
+      }
    }
 
-   _delete(id) {
+   _delete(id, image) {
       this.setState({
          status: true,
          msg_response: 'Loading...'
@@ -71,6 +90,7 @@ class Forms extends Component {
       var formData = new FormData()
       formData.append('pageType', 'delete')
       formData.append('id', id)
+      formData.append('image', image)
       
       axios.
          post('/usaha/profile/item/delete', formData).
@@ -93,6 +113,8 @@ class Forms extends Component {
       formData.append('pageType', pageType)
       formData.append('id', segment[5])
       formData.append('name', this.state.name)
+      formData.append('image', this.image.files[0])
+      formData.append('price', this.state.price)
 
       axios.
          post('/usaha/profile/item/submit', formData).
@@ -132,10 +154,21 @@ class Forms extends Component {
                <Col md={4}>
                   <div className="card">
                      <div className="card-body">
+                        <Form.Group className={this.state.errors.image ? 'has-danger' : ''}>
+                           <Form.Label>Image</Form.Label>
+                           <Form.Control name="image" ref={e => this.image = e} onChange={this._onChange} size="sm" type="file" />
+                           <Form.Control.Feedback type="invalid">{this.state.errors.image}</Form.Control.Feedback>
+                           <Form.Control.Feedback type="valid">Files can only be 2MB</Form.Control.Feedback>
+                        </Form.Group>
                         <Form.Group className={this.state.errors.name ? 'has-danger' : ''}>
                            <Form.Label>Item Name</Form.Label>
                            <Form.Control name="name" value={this.state.name} onChange={this._onChange} size="sm" autoFocus />
                            <Form.Control.Feedback type="invalid">{this.state.errors.name}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group className={this.state.errors.price ? 'has-danger' : ''}>
+                           <Form.Label>Price</Form.Label>
+                           <Form.Control name="price" value={this.state.price} onChange={this._onChange} size="sm" type="number" />
+                           <Form.Control.Feedback type="invalid">{this.state.errors.price}</Form.Control.Feedback>
                         </Form.Group>
                         <Button
                            variant="success"
@@ -152,8 +185,9 @@ class Forms extends Component {
                      <Table striped bordered hover size="sm" id="datatable">
                         <thead>
                            <tr>
-                              <th style={{ width: '5%' }}>No</th>
+                              <th>Image</th>
                               <th>Name</th>
+                              <th>Price</th>
                            </tr>
                         </thead>
                      </Table>

@@ -14,7 +14,7 @@ class Dashboard extends UsahaController {
    public function index() {
       $this->data = [
          'title' => 'Dashboard',
-         'internalJs' => ['http://localhost:8080/usahaDashboard.js']
+         'internalJs' => ['bundle/usahaDashboard.js']
       ];
 
       $this->template($this->data);

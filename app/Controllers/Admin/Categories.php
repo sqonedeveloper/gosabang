@@ -19,7 +19,7 @@ class Categories extends AdminController {
          'internalCss' => $this->app->datatable['css'],
          'internalJs' => [
             $this->app->datatable['js'],
-            'http://localhost:8080/adminCategories.js'
+            'bundle/adminCategories.js'
          ]
       ];
 
@@ -30,7 +30,7 @@ class Categories extends AdminController {
       $this->data = [
          'title' => 'Add New Categories',
          'pageType' => 'insert',
-         'internalJs' => ['http://localhost:8080/adminCategoriesForms.js']
+         'internalJs' => ['bundle/adminCategoriesForms.js']
       ];
 
       $this->template($this->data);
@@ -44,7 +44,7 @@ class Categories extends AdminController {
       $this->data = [
          'title' => 'Edit Categories',
          'pageType' => 'update',
-         'internalJs' => ['http://localhost:8080/adminCategoriesForms.js'],
+         'internalJs' => ['bundle/adminCategoriesForms.js'],
          'footerJs' => $footerJs
       ];
 

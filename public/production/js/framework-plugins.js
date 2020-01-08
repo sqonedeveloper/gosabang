@@ -561,7 +561,7 @@
                 return (cache.vendor==='Moz' || cache.vendor==='ms') ? 'transitionend' : cache.vendor+'TransitionEnd';
             },
             canTransform: function(){settings.element
-                return typeof settings.element.style[cache.vendor+'Transform'] !== 'undefined';
+                // return typeof settings.element.style[cache.vendor+'Transform'] !== 'undefined';
             },
             deepExtend: function(destination, source) {
                 var property;
@@ -627,7 +627,7 @@
         },
         action = {
             translate: {
-                get: {
+                /* get: {
                     matrix: function(index) {
 
                         if( !utils.canTransform() ){
@@ -645,7 +645,7 @@
                             return 0;
                         }
                     }
-                },
+                }, */
                 easeCallback: function(){
                     settings.element.style[cache.vendor+'Transition'] = '';
                     settings.elementMirror.style[cache.vendor+'Transition'] = '';
@@ -1021,7 +1021,7 @@
             utils.deepExtend(settings, opts);
         };
 
-        this.state = function() {
+        /* this.state = function() {
             var state,
                 fromLeft = action.translate.get.matrix(4);
             if (fromLeft === settings.maxPosition) {
@@ -1035,7 +1035,7 @@
                 state: state,
                 info: cache.simpleStates
             };
-        };
+        }; */
         init(userOpts);
     };
     if ((typeof module !== 'undefined') && module.exports) {

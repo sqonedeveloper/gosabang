@@ -34,9 +34,9 @@ class AdminController extends BaseController {
       }
 
       $internalJs = [
-         'http://localhost:8080/vendor.js',
-         'http://localhost:8080/topbar.js',
-         'http://localhost:8080/sidebar.js'
+         'bundle/vendor.js',
+         'bundle/topbar.js',
+         'bundle/sidebar.js'
       ];
       
       if (!empty($content['internalJs'])) {
@@ -75,21 +75,28 @@ class AdminController extends BaseController {
          ],
          [
             'label' => 'Categories',
-            'icon' => 'mdi mdi-gauge',
+            'icon' => 'mdi mdi-access-point',
             'active' => ['categories'],
             'url' => '/admin/categories',
             'sub' => false
          ],
          [
             'label' => 'Profile',
-            'icon' => 'mdi mdi-gauge',
+            'icon' => 'mdi mdi-account-box-outline',
             'active' => ['profile'],
             'url' => '/admin/profile',
             'sub' => false
          ],
          [
+            'label' => 'Blog',
+            'icon' => 'mdi mdi-book-open-page-variant',
+            'active' => ['blog'],
+            'url' => '/admin/blog',
+            'sub' => false
+         ],
+         [
             'label' => 'Users',
-            'icon' => 'mdi mdi-gauge',
+            'icon' => 'mdi mdi-account-network',
             'active' => ['users'],
             'url' => '#',
             'sub' => true,
@@ -100,13 +107,6 @@ class AdminController extends BaseController {
                   'url' => '/admin/users/account'
                ]
             ]
-         ],
-         [
-            'label' => 'Settings',
-            'icon' => 'mdi mdi-gauge',
-            'active' => ['settings'],
-            'url' => '/admin/settings',
-            'sub' => false
          ],
       ];
       return $config;

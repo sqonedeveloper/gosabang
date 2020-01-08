@@ -338,3 +338,7 @@ label {
    display: none;
    padding: 10px;
 }
+
+.form-control-file {
+   min-height: 25px;
+}

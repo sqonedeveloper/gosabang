@@ -73,6 +73,11 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'App\Controllers\Production\Home::index');
+$routes->group('/', ['namespace' => 'App\Controllers\Production'], function($routes) {
+	$routes->get('categories/(:any)', 'Categories::index/$1');
+	$routes->get('business/(:any)', 'Business::index/$1');
+	$routes->get('blog/(:num)', 'Blog::index/$1');
+});
 
 
 $routes->get('login', 'Login::index');
@@ -109,12 +114,26 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function($rout
 			$routes->post('delete', 'Account::delete');
 		});
 	});
+
+	$routes->get('blog', 'Blog::index');
+	$routes->group('blog', function($routes) {
+		$routes->get('addNew', 'Blog::addNew');
+		$routes->get('edit/(:num)', 'Blog::edit/$1');
+		$routes->post('submit', 'Blog::submit');
+		$routes->post('getData', 'Blog::getData');
+		$routes->post('delete', 'Blog::delete');
+	});
 });
 
 $routes->group('usaha', ['namespace' => 'App\Controllers\Usaha'], function($routes) {
 	$routes->get('dashboard', 'Dashboard::index');
 
 	$routes->group('profile', ['namespace' => 'App\Controllers\Usaha\Profile'], function($routes) {
+		$routes->get('info', 'Info::index');
+		$routes->group('info', function($routes) {
+			$routes->post('submit', 'Info::submit');
+		});
+
 		$routes->get('item', 'Item::index');
 		$routes->group('item', function($routes) {
 			$routes->get('edit/(:num)', 'Item::edit/$1');
@@ -122,6 +141,12 @@ $routes->group('usaha', ['namespace' => 'App\Controllers\Usaha'], function($rout
 			$routes->post('getData', 'Item::getData');
 			$routes->post('delete', 'Item::delete');
 		});
+	});
+
+	$routes->get('gallery', 'Gallery::index');
+	$routes->group('gallery', function($routes) {
+		$routes->post('submit', 'Gallery::submit');
+		$routes->post('delete', 'Gallery::delete');
 	});
 
 	$routes->get('account', 'Account::index');

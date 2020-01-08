@@ -13,9 +13,13 @@
       'production/css/font-awesome.css',
       'production/css/animate.min.css'
    ]);
+   echo '<style type="text/css">';
+   $minify = new \App\Libraries\Minify();
+   echo $minify->css('public/production/css/custom.css');
+   echo '</style>';
    ?>
 </head>
-<body class="no-sidebar">
+<body>
    <div id="header-fixed disabled"><!--Header must be disabled, but not removed--></div>
    <div class="all-elements" id="root"></div>
    <?php
@@ -25,6 +29,13 @@
       'production/js/framework-plugins.js',
       'production/js/custom.js'
    ]);
+   echo '<script type="text/javascript">';
+   echo 'var baseURL = "' . base_url() . '",';
+   echo 'siteURL = "' . base_url('index.php') . '",';
+   echo 'segment = ' . $segment . ',';
+   echo 'content = ' . $footerJs . ';';
+   echo '</script>';
+   echo $internalJs;
    ?>
 </body>
 </html>

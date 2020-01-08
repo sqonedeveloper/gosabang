@@ -19,7 +19,7 @@ class Profile extends AdminController {
          'internalCss' => $this->app->datatable['css'],
          'internalJs' => [
             $this->app->datatable['js'],
-            'http://localhost:8080/adminProfile.js'
+            'bundle/adminProfile.js'
          ]
       ];
 
@@ -28,13 +28,12 @@ class Profile extends AdminController {
 
    public function addNew() {
       $model = new Model();
-
       $footerJs['listsCategories'] = $model->getListsCategories();
 
       $this->data = [
          'title' => 'Add New Profile',
          'pageType' => 'insert',
-         'internalJs' => ['http://localhost:8080/adminProfileForms.js'],
+         'internalJs' => ['bundle/adminProfileForms.js'],
          'footerJs' => $footerJs
       ];
 
@@ -43,13 +42,13 @@ class Profile extends AdminController {
    
    public function edit($id) {
       $model = new Model();
-
       $footerJs['detail'] = $model->getDetailEdit($id);
+      $footerJs['listsCategories'] = $model->getListsCategories();
 
       $this->data = [
          'title' => 'Edit Profile',
          'pageType' => 'update',
-         'internalJs' => ['http://localhost:8080/adminProfileForms.js'],
+         'internalJs' => ['bundle/adminProfileForms.js'],
          'footerJs' => $footerJs
       ];
 

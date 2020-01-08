@@ -19,7 +19,7 @@ class Account extends AdminController {
          'internalCss' => $this->app->datatable['css'],
          'internalJs' => [
             $this->app->datatable['js'],
-            'http://localhost:8080/adminUsersAccount.js'
+            'bundle/adminUsersAccount.js'
          ]
       ];
 

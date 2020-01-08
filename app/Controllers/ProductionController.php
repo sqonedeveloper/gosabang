@@ -19,20 +19,14 @@ class ProductionController extends BaseController {
          }
       }
 
-      $internalJs = [
-         'http://localhost:8080/vendor.js',
-         'http://localhost:8080/topbar.js',
-         'http://localhost:8080/sidebar.js'
-      ];
-      
+      $internalJs = ['bundle/vendor.js'];
       if (!empty($content['internalJs'])) {
          foreach ($content['internalJs'] as $key) {
             $internalJs[] = $key;
          }
       }
 
-      $footerJs['navigation'] = $this->_generateNavigation();
-      // $footerJs['sites'] = $this->getDefaultSitesConfig();
+      $footerJs = [];
       if (!empty($content['footerJs'])) {
          foreach ($content['footerJs'] as $key => $val) {
             $footerJs[$key] = $val;

@@ -3,6 +3,20 @@ import ReactDOM from 'react-dom'
 import { Container, Row, Col, Breadcrumb } from 'react-bootstrap'
 
 class Dashboard extends Component {
+   constructor() {
+      super()
+
+      this.state = {
+         categories: 0,
+         profile: 0,
+         blog: 0
+      }
+   }
+
+   componentDidMount() {
+      this.setState({ ...content.counting })
+   }
+
    render() {
       return (
          <Container fluid={true}>
@@ -16,10 +30,45 @@ class Dashboard extends Component {
                </Col>
             </Row>
             <Row>
-               <Col md={12}>
-                  <div className="card">
+               <Col lg={4} md={12}>
+                  <div className="card card-inverse card-primary">
                      <div className="card-body">
-                        This is some text within a card block.
+                        <div className="d-flex">
+                           <h3 className="card-title">Categories</h3>
+                        </div>
+                        <Row>
+                           <div className="col-4 align-self-center">
+                              <h2 className="font-weight-light text-white text-nowrap">{this.state.categories} categories</h2>
+                           </div>
+                        </Row>
+                     </div>
+                  </div>
+               </Col>
+               <Col lg={4} md={12}>
+                  <div className="card card-inverse card-success">
+                     <div className="card-body">
+                        <div className="d-flex">
+                           <h3 className="card-title">Profile</h3>
+                        </div>
+                        <Row>
+                           <div className="col-4 align-self-center">
+                              <h2 className="font-weight-light text-white text-nowrap">{this.state.categories} profile</h2>
+                           </div>
+                        </Row>
+                     </div>
+                  </div>
+               </Col>
+               <Col lg={4} md={12}>
+                  <div className="card card-inverse card-info">
+                     <div className="card-body">
+                        <div className="d-flex">
+                           <h3 className="card-title">Blog</h3>
+                        </div>
+                        <Row>
+                           <div className="col-4 align-self-center">
+                              <h2 className="font-weight-light text-white text-nowrap">{this.state.blog} blog</h2>
+                           </div>
+                        </Row>
                      </div>
                   </div>
                </Col>

@@ -277,4 +277,16 @@ class App extends BaseConfig
 		]
 	];
 
+	public $magnific = [
+		'css' => ['plugins/magnific/magnific-popup.min.css'],
+		'js' => [
+			'plugins/magnific/jquery.magnific-popup.min.js',
+			'plugins/magnific/jquery.magnific-popup-init.js'
+		]
+	];
+
+	public $trumbowyg = [
+		'css' => ['plugins/tumbowyg/dist/ui/trumbowyg.min.css']
+	];
+
 }

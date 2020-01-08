@@ -4,6 +4,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Controllers\ProductionController;
+use App\Models\Production\Home as Model;
 
 class Home extends ProductionController {
 
@@ -12,8 +13,13 @@ class Home extends ProductionController {
    }
 
    public function index() {
+      $model = new Model();
+      $footerJs['listsCategories'] = $model->getListsCategories();
+
       $this->data = [
-         'title' => 'Go Sabang'
+         'title' => 'Go Sabang',
+         'internalJs' => ['bundle/home.js'],
+         'footerJs' => $footerJs
       ];
 
       $this->template($this->data);

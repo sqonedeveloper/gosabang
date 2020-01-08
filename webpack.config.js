@@ -15,9 +15,17 @@ module.exports = {
 		login: './src/Login.js',
 		adminUsersAccount: './src/Admin/Users/Account/Lists.js',
 		adminUsersAccountForms: './src/Admin/Users/Account/Forms.js',
+		adminBlog: './src/Admin/Blogs/Lists.js',
+		adminBlogForms: './src/Admin/Blogs/Forms.js',
 		usahaDashboard: './src/Usaha/Dashboard.js',
 		usahaAccount: './src/Usaha/Account.js',
 		usahaProfileItemForms: './src/Usaha/Profile/Item/Forms.js',
+		usahaProfileInfoForms: './src/Usaha/Profile/Info/Forms.js',
+		usahaGallery: './src/Usaha/Gallery.js',
+		home: './src/Production/Home.js',
+		categoriesLists: './src/Production/Categories/Lists.js',
+		businessDetail: './src/Production/Business/Detail.js',
+		blogDetail: './src/Production/Blog.js',
 	},
 
 	output: {

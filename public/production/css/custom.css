@@ -1,0 +1,47 @@
+.lazy-load-image-background.blur {
+   filter: blur(15px);
+}
+
+.lazy-load-image-background.blur.lazy-load-image-loaded {
+   filter: blur(0);
+   transition: filter .3s;
+}
+
+.lazy-load-image-background.blur > img {
+   opacity: 0;
+}
+
+.lazy-load-image-background.blur.lazy-load-image-loaded > img {
+   opacity: 1;
+   transition: opacity .3s;
+}
+
+.thumbnail-icon-categories {
+   width: 80px;
+   height: 80px;
+   line-height: 80px;
+   border-radius: 80px;
+   text-align: center;
+   font-size: 27px;
+   color: #fff;
+}
+
+.menu-item {
+   height: 40px !important;
+}
+
+.menu-item em {
+   padding-left: 20px !important;
+}
+
+@media (max-width: 420px) and (min-width: 361px) {
+   .thumbnail-menu a {
+      min-height: 190px;
+   }
+}
+
+@media (max-width: 360px) and (min-width: 300px) {
+   .thumbnail-menu a {
+      min-height: 190px;
+   }
+}
