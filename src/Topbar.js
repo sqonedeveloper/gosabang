@@ -41,7 +41,7 @@ class Topbar extends Component {
                                  </div>
                               </li>
                               <li role="separator" className="divider"></li>
-                              {content.users.role !== '2' ? <li><a href={siteURL + '/admin/akun/profile'}><i className="ti-user" /> My Profile</a></li> : ''}
+                              {content.users.role !== '2' ? <li><a href={siteURL + '/admin/users/profile'}><i className="ti-user" /> My Profile</a></li> : ''}
                               <li><a href={siteURL + '/login/logout'}><i className="fa fa-power-off" /> Logout</a></li>
                            </ul>
                         </div>

@@ -112,6 +112,14 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function($rout
 		$routes->group('account', function($routes) {
 			$routes->post('getData', 'Account::getData');
 			$routes->post('delete', 'Account::delete');
+			$routes->get('addNew', 'Account::addNew');
+			$routes->get('edit/(:num)', 'Account::edit/$1');
+			$routes->post('submit', 'Account::submit');
+		});
+
+		$routes->get('profile', 'Profile::index');
+		$routes->group('profile', function($routes) {
+			$routes->post('submit', 'Profile::submit');
 		});
 	});
 

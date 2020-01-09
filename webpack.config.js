@@ -15,6 +15,7 @@ module.exports = {
 		login: './src/Login.js',
 		adminUsersAccount: './src/Admin/Users/Account/Lists.js',
 		adminUsersAccountForms: './src/Admin/Users/Account/Forms.js',
+		adminUsersAccountProfile: './src/Admin/Users/Account/Profile.js',
 		adminBlog: './src/Admin/Blogs/Lists.js',
 		adminBlogForms: './src/Admin/Blogs/Forms.js',
 		usahaDashboard: './src/Usaha/Dashboard.js',

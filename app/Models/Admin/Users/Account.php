@@ -10,6 +10,75 @@ class Account extends Model {
       $this->db = \Config\Database::connect();
    }
 
+   public function getDetailEdit($id) {
+      $table = $this->db->table('tb_users a');
+      $table->select('a.name, a.username, a.email, a.role, a.status, b.id as id_profile_usaha');
+      $table->join('tb_profile_usaha b', 'b.id_users = a.id', 'left');
+      $table->where('a.id', $id);
+
+      $get = $table->get();
+      $data = $get->getRowArray();
+
+      if (isset($data)) {
+         return $data;
+      } else {
+         throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+      }
+   }
+
+   public function getListsProfile() {
+      $table = $this->db->table('tb_profile_usaha');
+      $table->select('id, name');
+      $table->orderBy('name', 'asc');
+
+      $get = $table->get();
+
+      $response = [];
+      foreach ($get->getResultArray() as $data) {
+         array_push($response, [
+            'value' => $data['id'],
+            'label' => $data['name']
+         ]);
+      }
+      return $response;
+   }
+
+   public function submit($post = []) {
+      $table = $this->db->table('tb_users');
+
+      if ($post['pageType'] === 'insert') {
+         $table->insert([
+            'name' => $post['name'],
+            'username' => $post['username'],
+            'email' => $post['email'],
+            'password' => password_hash($post['password'], PASSWORD_BCRYPT),
+            'role' => $post['role'],
+            'status' => $post['status'],
+            'uploaded' => date('Y-m-d H:i:s'),
+            'modified' => date('Y-m-d H:i:s'),
+         ]);
+         $id_users = $this->db->insertID();
+
+         if ($post['role'] === '2') {
+            $profile = $this->db->table('tb_profile_usaha');
+            $profile->where('id', $post['id_profile_usaha']);
+            $profile->update([
+               'id_users' => $id_users
+            ]);
+         }
+      } else if ($post['pageType'] === 'update') {
+         if (!empty($post['password'])) {
+            $table->set('password', password_hash($post['password'], PASSWORD_BCRYPT));
+         }
+         
+         $table->set('modified', date('Y-m-d H:i:s'));
+         $table->set('name', $post['name']);
+         $table->set('status', $post['status']);
+         $table->where('id', $post['id']);
+         $table->update();
+      }
+   }
+
    function deleteAccount($post = []) {
       $table = $this->db->table('tb_users');
       $table->where('id', $post['id']);

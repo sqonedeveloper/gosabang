@@ -52,7 +52,7 @@ class Dashboard extends Component {
                         </div>
                         <Row>
                            <div className="col-4 align-self-center">
-                              <h2 className="font-weight-light text-white text-nowrap">{this.state.categories} profile</h2>
+                              <h2 className="font-weight-light text-white text-nowrap">{this.state.profile} profile</h2>
                            </div>
                         </Row>
                      </div>

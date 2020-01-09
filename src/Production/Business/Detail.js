@@ -37,7 +37,7 @@ class Detail extends Component {
                   <div className="header-clear-large" />
                   <div className="container heading-style-5">
                      <h4 className="heading-title">{this.state.name}</h4>
-                     <i className="fa fa-pencil heading-icon" />
+                     <i className="fa fa-sitemap heading-icon" />
                      <div className="line bg-black" />
                   </div>
                   <div className="blog-sidebar-recent-posts full-bottom" style={{ padding: 20 }}>
@@ -58,7 +58,7 @@ class Detail extends Component {
                   </div>
                   <div className="container heading-style-5">
                      <h4 className="heading-title">Items</h4>
-                     <i className="fa fa-pencil heading-icon" />
+                     <i className="fa fa-sitemap heading-icon" />
                      <div className="line bg-black" />
                   </div>
                   <div className="blog-sidebar-recent-posts full-bottom" style={{ padding: 20 }}>

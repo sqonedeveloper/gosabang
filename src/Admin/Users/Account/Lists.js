@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { Container, Row, Col, Breadcrumb, Table } from 'react-bootstrap'
+import { Container, Row, Col, Breadcrumb, Table, Button } from 'react-bootstrap'
 import axios from 'axios'
 import MsgResponse from '../../../MsgResponse'
 
@@ -33,7 +33,7 @@ class Lists extends Component {
             var _delete = rows[1].children[0]
       
             _edit.onclick = () => {
-               open(siteURL + '' + _edit.dataset.id, '_parent')
+               open(siteURL + '/admin/users/account/edit/' + _edit.dataset.id, '_parent')
             }
       
             _delete.onclick = () => {
@@ -84,13 +84,21 @@ class Lists extends Component {
       return (
          <Container fluid={true}>
             <Row className="page-titles">
-               <Col md={12} className="align-self-center">
+               <Col md={9} className="align-self-center">
                   <h4 className="text-themecolor m-b-0 m-t-0">Users</h4>
                   <Breadcrumb>
                      <Breadcrumb.Item active>Home</Breadcrumb.Item>
                      <Breadcrumb.Item active>Users</Breadcrumb.Item>
                      <Breadcrumb.Item active>{document.getElementsByTagName('title')[0].innerText}</Breadcrumb.Item>
                   </Breadcrumb>
+               </Col>
+               <Col md={3} className="align-self-center">
+                  <Button
+                     variant="success"
+                     className="waves-effect waves-light float-right"
+                     size="sm"
+                     onClick={() => open(siteURL + '/admin/users/account/addNew', '_parent')}
+                  >Add New</Button>
                </Col>
             </Row>
             <Row>

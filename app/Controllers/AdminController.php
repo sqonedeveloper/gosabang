@@ -34,9 +34,9 @@ class AdminController extends BaseController {
       }
 
       $internalJs = [
-         'bundle/vendor.js',
-         'bundle/topbar.js',
-         'bundle/sidebar.js'
+         'http://localhost:8080/vendor.js',
+         'http://localhost:8080/topbar.js',
+         'http://localhost:8080/sidebar.js'
       ];
       
       if (!empty($content['internalJs'])) {

@@ -26,6 +26,36 @@ class Account extends AdminController {
       $this->template($this->data);
    }
 
+   public function addNew() {
+      $model = new Model();
+      $footerJs['listsProfile'] = $model->getListsProfile();
+
+      $this->data = [
+         'title' => 'Add New Account',
+         'pageType' => 'insert',
+         'internalJs' => ['bundle/adminUsersAccountForms.js'],
+         'footerJs' => $footerJs
+      ];
+
+      $this->template($this->data);
+   }
+   
+   
+   public function edit($id) {
+      $model = new Model();
+      $footerJs['listsProfile'] = $model->getListsProfile();
+      $footerJs['detail'] = $model->getDetailEdit($id);
+
+      $this->data = [
+         'title' => 'Edit Account',
+         'pageType' => 'update',
+         'internalJs' => ['bundle/adminUsersAccountForms.js'],
+         'footerJs' => $footerJs
+      ];
+
+      $this->template($this->data);
+   }
+
    public function getData() {
       if ($this->request->isAJAX()) {
          $model = new Model();
@@ -78,6 +108,29 @@ class Account extends AdminController {
             $response['msg_response'] = 'Data successfully deleted.';
          } else {
             $response['msg_response'] = 'Failed to delete data?';
+            $response['errors'] = \Config\Services::validation()->getErrors();
+         }
+         return $this->response->setJSON($response);
+      } else {
+         $this->notFound();
+      }
+   }
+
+   public function submit() {
+      if ($this->request->isAJAX()) {
+         $response = ['status' => false, 'errors' => [], 'msg_response' => ''];
+         $post = $this->request->getVar();
+         $validate = new Validate();
+      
+         if ($this->validate($validate->generated($post))) {
+            $model = new Model();
+            $model->submit($post);
+
+            $response['status'] = true;
+            $response['msg_response'] = 'Data saved successfully.';
+            $response['emptyPost'] = $this->emptyPost($post);
+         } else {
+            $response['msg_response'] = 'Something went wrong?';
             $response['errors'] = \Config\Services::validation()->getErrors();
          }
          return $this->response->setJSON($response);
