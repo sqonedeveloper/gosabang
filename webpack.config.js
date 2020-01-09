@@ -27,6 +27,7 @@ module.exports = {
 		categoriesLists: './src/Production/Categories/Lists.js',
 		businessDetail: './src/Production/Business/Detail.js',
 		blogDetail: './src/Production/Blog.js',
+		homeLogin: './src/Production/HomeLogin.js'
 	},
 
 	output: {

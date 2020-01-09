@@ -18,11 +18,19 @@ class Home extends ProductionController {
 
       $this->data = [
          'title' => 'Go Sabang',
-         'internalJs' => ['bundle/home.js'],
+         'internalJs' => ['http://localhost:8080/home.js'],
          'footerJs' => $footerJs
       ];
 
       $this->template($this->data);
+   }
+
+   public function createSession() {
+      $session = \Config\Services::session();
+      $session->set('is_login', true);
+
+      $response['status'] = true;
+      return $this->response->setJSON($response);
    }
 
 }

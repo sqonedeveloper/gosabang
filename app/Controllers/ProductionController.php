@@ -7,8 +7,12 @@ use App\Controllers\BaseController;
 
 class ProductionController extends BaseController {
 
+   protected $session;
+
    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger) {
       parent::initController($request, $response, $logger);
+
+      $this->session = \Config\Services::session();
    }
 
    public function template($content = []) {
@@ -19,14 +23,14 @@ class ProductionController extends BaseController {
          }
       }
 
-      $internalJs = ['bundle/vendor.js'];
+      $internalJs = ['http://localhost:8080/vendor.js'];
       if (!empty($content['internalJs'])) {
          foreach ($content['internalJs'] as $key) {
             $internalJs[] = $key;
          }
       }
 
-      $footerJs = [];
+      $footerJs['is_login'] = $this->session->get('is_login');
       if (!empty($content['footerJs'])) {
          foreach ($content['footerJs'] as $key => $val) {
             $footerJs[$key] = $val;

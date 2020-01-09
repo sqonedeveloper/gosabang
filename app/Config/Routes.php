@@ -77,6 +77,7 @@ $routes->group('/', ['namespace' => 'App\Controllers\Production'], function($rou
 	$routes->get('categories/(:any)', 'Categories::index/$1');
 	$routes->get('business/(:any)', 'Business::index/$1');
 	$routes->get('blog/(:num)', 'Blog::index/$1');
+	$routes->get('homeLogin', 'Login::index');
 });
 
 

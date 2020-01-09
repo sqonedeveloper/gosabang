@@ -5,6 +5,10 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 class Home extends Component {
    componentDidMount() {
       document.getElementsByTagName('body')[0].classList.add('no-sidebar')
+
+      if (!content.is_login) {
+         open(siteURL + '/homeLogin', '_parent')
+      }
    }
 
    render() {

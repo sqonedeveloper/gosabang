@@ -5,6 +5,7 @@
    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
    <meta name="apple-mobile-web-app-capable" content="yes"/>
    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+   <meta name="google-site-verification" content="pbS1pC_JIGTEa_EvgB1LQAINbzCaIIHcjBXQonSNB8E" />
    <title><?php echo $title;?></title>
    <?php
    echo css_tag([
